@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Sheet</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Database Sheet</h1>
+  <div id="filters">
+    <label for="dateFilter">Date:</label>
+    <select id="dateFilter">
+      <option value="all">All</option>
+    </select>
+    
+    <!-- Age Group Dropdown -->
+    <label for="ageFilter">Age Group:</label>
+    <select id="ageFilter">
+      <option value="all">All</option>
+      <option value="15-25">15-25</option>
+      <option value="25-plus">>25</option>
+    </select>
+    
+    <!-- Gender Dropdown -->
+    <label for="genderFilter">Gender:</label>
+    <select id="genderFilter">
+      <option value="all">All</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>      
+    </select>
+    <button onclick="goToLoginPage()">Go to login page</button>
+    <button id="viewChartButton" window.location.href = "chart.html"; >View Charts</button>
+  </div>
+
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Age Group</th>
+        <th>Gender</th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        <th>D</th>
+        <th>E</th>
+        <th>F</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data rows will be dynamically populated -->
+    </tbody>
+  </table>
+
+  <canvas id="chart"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bar and Line Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+    canvas {
+      margin: 20px auto;
+      display: block;
+    }
+   button{
+    padding:10px 20px;
+    font-size: 16px;
+    cursor:pointer;
+    background-color: #007Bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top:20px;
+ }
+
+    button:hover{
+    background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bar and Line Charts</h1>
+
+  <!-- Bar Chart -->
+  <h2>Bar Chart</h2>
+  <canvas id="barChart" width="500" height="200"></canvas>
+
+  <!-- Line Chart -->
+  <h2>Line Chart</h2>
+  <canvas id="lineChart" width="400" height="200"></canvas>
+
+  <button onclick="window.location.href='Login.html'">Back to Table</button>
+
+  <script>
+    // Fetch data from localStorage
+    const chartData = JSON.parse(localStorage.getItem("chartData")) || [];
+    const labels = ["A", "B", "C", "D", "E", "F"];
+
+    // Bar Chart
+    new Chart(document.getElementById("barChart"), {
+      type: "bar",
+      data: {
+        labels: labels,
+        datasets: [{
+          label: "Bar Chart Values",
+          data: chartData,
+          backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'],
+          borderColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40'],
+          borderWidth: 1,
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+
+    // Line Chart
+    new Chart(document.getElementById("lineChart"), {
+      type: "line",
+      data: {
+        labels: labels,
+        datasets: [{
+          label: "Line Chart Values",
+          data: chartData,
+          backgroundColor: "rgba(153, 102, 255, 0.2)",
+          borderColor: "rgba(153, 102, 255, 1)",
+          borderWidth: 2,
+          fill: true,
+        }]
+      },
+      options: {
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup and Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: rgba(241, 113, 226, 0.992);
+    }
+    .container {
+      width: 300px;
+      padding: 20px;
+      background: #5cd1c7;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px hsla(182, 73%, 70%, 0.102);
+    }
+    .container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #d5d6df;
+      color: #0e0d0d;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .toggle {
+      margin-top: 10px;
+      text-align: center;
+      color: #2200ff;
+      cursor: pointer;
+    }
+    .toggle:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="signupContainer">
+    <h2>Sign Up</h2>
+    <input type="text" id="signupUsername" placeholder="Enter Username" required />
+    <input type="password" id="signupPassword" placeholder="Enter Password" required />
+    <button onclick="signup()">Sign Up</button>
+    <p class="toggle" onclick="showLogin()">Already have an account? Login</p>
+  </div>
+
+  <div class="container" id="loginContainer" style="display: none;">
+    <h2>Login</h2>
+    <input type="text" id="loginUsername" placeholder="Enter Username" required />
+    <input type="password" id="loginPassword" placeholder="Enter Password" required />
+    <button onclick="login()">Login</button>
+    <p class="toggle" onclick="showSignup()">Don't have an account? Sign Up</p>
+  </div>
+
+  <script>
+    // Sign-up function
+    function signup() {
+      const username = document.getElementById("signupUsername").value;
+      const password = document.getElementById("signupPassword").value;
+
+      if (username && password) {
+        localStorage.setItem("username", username);
+        localStorage.setItem("password", password);
+        alert("Signup successful! Please login.");
+        showLogin();
+      } else {
+        alert("Please fill all the fields.");
+      }
+    }
+
+    // Login function
+    function login() {
+      const username = document.getElementById("loginUsername").value;
+      const password = document.getElementById("loginPassword").value;
+
+      const storedUsername = localStorage.getItem("username");
+      const storedPassword = localStorage.getItem("password");
+
+      // Check if user has signed up
+      if (!storedUsername || !storedPassword) {
+        alert("No account found. Please sign up first.");
+        showSignup();
+        return;
+      }
+
+      // Validate login
+      if (username === storedUsername && password === storedPassword) {
+        alert("Login successful!");
+        window.location.href = "Login.html"; // Navigate to the next page only on successful login
+      } else {
+        alert("Invalid username or password. Please try again.");
+      }
+    }
+
+    // Show sign-up form
+    function showSignup() {
+      document.getElementById("signupContainer").style.display = "block";
+      document.getElementById("loginContainer").style.display = "none";
+    }
+
+    // Show login form
+    function showLogin() {
+      document.getElementById("signupContainer").style.display = "none";
+      document.getElementById("loginContainer").style.display = "block";
+    }
+  </script>
+</body>
+</html>
